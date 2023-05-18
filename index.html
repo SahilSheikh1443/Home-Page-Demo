@@ -52,35 +52,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" aria-current="page" href="#">ABOUT</a>
+                            <a class="nav-link second-color track-link" aria-current="page" href="#">ABOUT</a>
                         </li>
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" href="#">INTERIOR</a>
+                            <a class="nav-link second-color track-link" href="#">INTERIOR</a>
                         </li>
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" href="#">WORK</a>
+                            <a class="nav-link second-color track-link" href="#">WORK</a>
                         </li>
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" href="#">PRESS</a>
+                            <a class="nav-link second-color track-link" href="#">PRESS</a>
                         </li>
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" href="#">NEWS</a>
+                            <a class="nav-link second-color track-link" href="#">NEWS</a>
                         </li>
                         <li class="nav-item px-lg-3">
-                            <a class="nav-link second-color" href="#">CONTACT US</a>
+                            <a class="nav-link second-color track-link" href="#">CONTACT US</a>
                         </li>
                     </ul>
                     <ul class="flex-row justify-content-center navbar-nav align-items-center">
                         <li class="nav-item px-1">
-                            <a class="nav-link d-flex" target="_blank" aria-current="page" href="https://www.youtube.com/watch?v=ZyKQzygB0Rc&ab_channel=MeasureSchool"><i
+                            <a class="nav-link d-flex track-link" target="_blank" aria-current="page" href="https://www.youtube.com/watch?v=ZyKQzygB0Rc&ab_channel=MeasureSchool"><i
                                     class="fa-brands fa-instagram second-color fw-bolder border-0 fs-5"></i></a>
                         </li>
                         <li class="nav-item px-1">
-                            <a class="nav-link d-flex" target="_blank" href="https://www.youtube.com/watch?v=kpwdwSR1vUo&ab_channel=UmarTazkeer"><i
+                            <a class="nav-link d-flex track-link" target="_blank" href="https://www.youtube.com/watch?v=kpwdwSR1vUo&ab_channel=UmarTazkeer"><i
                                     class="fa-brands fa-facebook-f second-color px-1"></i></a>
                         </li>
                         <li class="nav-item px-1">
-                            <a class="nav-link d-flex" target="_blank" href="https://www.linkedin.com/in/sahil-sheikh/"><i class="fa-brands fa-twitter second-color"></i></a>
+                            <a class="nav-link d-flex track-link" target="_blank" href="https://www.linkedin.com/in/sahil-sheikh/"><i class="fa-brands fa-twitter second-color"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -495,6 +495,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ]
         });
     </script>
+                <script>
+                    var linkUrl;
+var linkName;
+var clickCount;
+// Function to track link clicks
+function trackLinkClick(event) {
+
+  linkUrl = event.currentTarget.href; // Get the URL of the clicked link
+  linkName = event.currentTarget.text;
+  // Retrieve the current click count from storage
+  clickCount = localStorage.getItem(linkUrl);
+  clickCount = clickCount ? parseInt(clickCount) + 1 : 1;
+
+  // Store the updated click count in storage
+  localStorage.setItem('Name:', linkName);
+  localStorage.setItem('count:', clickCount);
+  localStorage.setItem('URL:', linkUrl);
+  console.log('count:', clickCount, 'Name:', linkName, 'URL:', linkUrl);
+  // Send the link click data to your tracking system (replace with your tracking code)
+  // Example: sendToAnalytics(linkUrl, clickCount);
+
+  // Retrieve data from localStorage
+  var name = localStorage.getItem('Name:');
+  var count = localStorage.getItem('count:');
+  var URL = localStorage.getItem('URL:');
+
+  // Check if the data exists
+  if (name) {
+    // Data exists in localStorage
+    console.log('Name:', name);
+  }
+  if (count) {
+    // Data exists in localStorage
+    console.log('count:', clickCount);
+  }
+  if (URL) {
+    // Data exists in localStorage
+    console.log('URL:', linkUrl);
+  } else {
+    // Data does not exist in localStorage
+    console.log('Data not found in localStorage');
+  }
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var value = localStorage.getItem(key);
+    // console.log('Key:', key, 'Value:', value);
+  }
+
+  // Proceed with the link navigation after tracking (optional)
+  // setTimeout(function() {
+  //   window.location.href = linkUrl;
+  // }, 100);
+}
+
+// Attach click event listener to the parent element
+$("#appendData").on('click', '.track-link', trackLinkClick);
+                </script>
 </body>
 
 </html>
